@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolobolo Adventure | East Java Tours with Tania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Space+Grotesk:wght@400;500;600;700&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hot-pink: #FF2E63;
+            --electric-yellow: #FFE600;
+            --deep-teal: #0D7377;
+            --cream: #FFF8E7;
+            --night: #14213D;
+            --coral: #FF6B6B;
+            --mint: #4ECDC4;
+            --lavender: #A78BFA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--cream);
+            color: var(--night);
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='8' fill='%23FF2E63'/%3E%3C/svg%3E"), auto;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--hot-pink);
+            border-radius: 6px;
+            border: 2px solid var(--cream);
+        }
+
+        /* Animated Background Blobs */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--hot-pink);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--electric-yellow);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -5s;
+        }
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--mint);
+            top: 50%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.95); }
+            75% { transform: translate(-50px, -30px) scale(1.05); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 248, 231, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 3px solid var(--night);
+        }
+
+        .logo {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.8rem;
+            color: var(--hot-pink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--electric-yellow);
+            border: 3px solid var(--night);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--night);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--hot-pink);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--hot-pink) !important;
+            color: white !important;
+            border: 3px solid var(--night);
+            box-shadow: 4px 4px 0 var(--night);
+            transition: all 0.2s ease !important;
+        }
+
+        .nav-cta:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--night);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 8rem 3rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            display: block;
+        }
+
+        .hero-content h1 .line-1 {
+            color: var(--night);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .hero-content h1 .line-2 {
+            color: var(--hot-pink);
+            animation: slideIn 0.8s ease-out 0.2s backwards;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content h1 .line-2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--electric-yellow);
+            z-index: -1;
+            transform: rotate(-2deg);
+        }
+
+        .hero-content h1 .line-3 {
+            font-family: 'Covered By Your Grace', cursive;
+            font-size: 5rem;
+            color: var(--deep-teal);
+            animation: slideIn 0.8s ease-out 0.4s backwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            color: var(--night);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: var(--hot-pink);
+            color: white;
+            border: 4px solid var(--night);
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 6px 6px 0 var(--night);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--night);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: var(--electric-yellow);
+            color: var(--night);
+            border: 4px solid var(--night);
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 6px 6px 0 var(--night);
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--night);
+        }
+
+        .hero-images {
+            position: relative;
+            height: 600px;
+        }
+
+        .hero-img {
+            position: absolute;
+            border: 5px solid var(--night);
+            border-radius: 20px;
+            box-shadow: 10px 10px 0 var(--night);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 10;
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-img-1 {
+            width: 300px;
+            height: 400px;
+            top: 0;
+            right: 50px;
+            transform: rotate(5deg);
+            z-index: 3;
+        }
+
+        .hero-img-2 {
+            width: 250px;
+            height: 300px;
+            bottom: 50px;
+            right: 200px;
+            transform: rotate(-8deg);
+            z-index: 2;
+        }
+
+        .hero-img-3 {
+            width: 200px;
+            height: 250px;
+            top: 100px;
+            right: 300px;
+            transform: rotate(3deg);
+            z-index: 1;
+        }
+
+        /* Floating elements */
+        .floating-sticker {
+            position: absolute;
+            font-family: 'Covered By Your Grace', cursive;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border: 3px solid var(--night);
+            font-size: 1.2rem;
+            animation: wiggle 3s ease-in-out infinite;
+            box-shadow: 4px 4px 0 var(--night);
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .sticker-1 {
+            background: var(--mint);
+            top: 200px;
+            left: 60%;
+        }
+
+        .sticker-2 {
+            background: var(--coral);
+            color: white;
+            bottom: 100px;
+            right: 10%;
+            animation-delay: -1s;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--night);
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 3rem;
+            color: var(--electric-yellow);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 3.5rem;
+            color: var(--night);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 15px;
+            background: var(--electric-yellow);
+            z-index: -1;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--night);
+            opacity: 0.7;
+            margin-top: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-main {
+            width: 100%;
+            height: 500px;
+            border: 5px solid var(--night);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 15px 15px 0 var(--hot-pink);
+            transform: rotate(-3deg);
+            transition: all 0.4s ease;
+        }
+
+        .about-image-main:hover {
+            transform: rotate(0deg);
+        }
+
+        .about-image-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background: var(--electric-yellow);
+            border: 4px solid var(--night);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 0.9rem;
+            text-align: center;
+            transform: rotate(15deg);
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(15deg); }
+            to { transform: rotate(375deg); }
+        }
+
+        .about-content h2 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content h2 span {
+            color: var(--hot-pink);
+        }
+
+        .about-content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--night);
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-tag {
+            background: var(--mint);
+            padding: 0.7rem 1.5rem;
+            border: 3px solid var(--night);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 6rem 3rem;
+            background: linear-gradient(180deg, var(--cream) 0%, #f5e6d3 100%);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .package-card {
+            background: white;
+            border: 4px solid var(--night);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 8px 8px 0 var(--night);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 12px 12px 0 var(--night);
+        }
+
+        .package-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .package-card:hover .package-image img {
+            transform: scale(1.1);
+        }
+
+        .package-vibe {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 0.5rem 1.2rem;
+            border: 3px solid var(--night);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vibe-adventure { background: var(--coral); color: white; }
+        .vibe-history { background: var(--lavender); color: var(--night); }
+        .vibe-local { background: var(--mint); color: var(--night); }
+        .vibe-spiritual { background: var(--electric-yellow); color: var(--night); }
+        .vibe-bespoke { background: var(--hot-pink); color: white; }
+
+        .package-content {
+            padding: 1.8rem;
+        }
+
+        .package-title {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--night);
+        }
+
+        .package-desc {
+            font-size: 0.95rem;
+            color: var(--night);
+            opacity: 0.75;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .package-itinerary {
+            background: var(--cream);
+            border: 2px dashed var(--night);
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-itinerary h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            color: var(--hot-pink);
+        }
+
+        .package-itinerary ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .package-itinerary li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .package-itinerary li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--hot-pink);
+            font-weight: bold;
+        }
+
+        .package-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 2px solid var(--night);
+        }
+
+        .package-price {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.5rem;
+            color: var(--hot-pink);
+        }
+
+        .package-price span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--night);
+            opacity: 0.7;
+        }
+
+        .package-group {
+            font-size: 0.85rem;
+            background: var(--electric-yellow);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 2px solid var(--night);
+        }
+
+        .package-btn {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            background: var(--night);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .package-btn:hover {
+            background: var(--hot-pink);
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            padding: 6rem 3rem;
+            background: var(--night);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: var(--hot-pink);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .calendar-section .section-title h2 {
+            color: white;
+        }
+
+        .calendar-section .section-title h2::after {
+            background: var(--hot-pink);
+        }
+
+        .calendar-section .section-title p {
+            color: white;
+        }
+
+        .calendar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border: 4px solid white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .calendar-header {
+            background: var(--hot-pink);
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .calendar-nav button {
+            width: 45px;
+            height: 45px;
+            border: 3px solid white;
+            border-radius: 50%;
+            background: transparent;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-nav button:hover {
+            background: white;
+            color: var(--hot-pink);
+        }
+
+        .calendar-month {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .calendar-grid {
+            padding: 1.5rem;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .weekday {
+            text-align: center;
+            font-weight: 700;
+            color: var(--night);
+            font-size: 0.85rem;
+            padding: 0.5rem;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            color: var(--night);
+        }
+
+        .calendar-day:hover:not(.unavailable):not(.empty) {
+            background: var(--electric-yellow);
+            border-color: var(--night);
+            transform: scale(1.1);
+        }
+
+        .calendar-day.available {
+            background: rgba(78, 205, 196, 0.2);
+        }
+
+        .calendar-day.unavailable {
+            background: rgba(255, 46, 99, 0.1);
+            color: #ccc;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .calendar-day.selected {
+            background: var(--hot-pink);
+            color: white;
+            border-color: var(--night);
+            transform: scale(1.1);
+        }
+
+        .calendar-day.empty {
+            cursor: default;
+        }
+
+        .calendar-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            border-top: 2px dashed var(--night);
+            background: var(--cream);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 2px solid var(--night);
+        }
+
+        .legend-available {
+            background: rgba(78, 205, 196, 0.4);
+        }
+
+        .legend-unavailable {
+            background: rgba(255, 46, 99, 0.2);
+        }
+
+        /* Payment Section */
+        .payment-section {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, var(--mint) 0%, var(--cream) 100%);
+        }
+
+        .payment-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .payment-info {
+            background: white;
+            border: 4px solid var(--night);
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 8px 8px 0 var(--night);
+        }
+
+        .payment-info h3 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--night);
+        }
+
+        .payment-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px dashed var(--night);
+        }
+
+        .payment-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--hot-pink);
+            color: white;
+            border: 3px solid var(--night);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-content p {
+            font-size: 0.95rem;
+            opacity: 0.75;
+        }
+
+        .payment-highlight {
+            background: var(--electric-yellow);
+            padding: 1.5rem;
+            border: 3px solid var(--night);
+            border-radius: 15px;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .payment-highlight p {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .payment-highlight .amount {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 2rem;
+            color: var(--hot-pink);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .payment-form {
+            background: var(--night);
+            border-radius: 25px;
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .payment-form h3 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 3px solid white;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+            color: var(--night);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--hot-pink);
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--hot-pink);
+            color: white;
+            border: 3px solid white;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .pay-btn:hover {
+            background: var(--electric-yellow);
+            color: var(--night);
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 3rem;
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border: 4px solid var(--night);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .gallery-item::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 10px 10px 0 var(--night);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+        }
+
+        .gallery-item:nth-child(5) {
+            grid-column: span 2;
+        }
+
+        .gallery-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 4px solid var(--night);
+            border-radius: 60px;
+            box-shadow: 6px 6px 0 var(--night);
+            transition: all 0.3s ease;
+        }
+
+        .instagram-btn:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--night);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 3rem;
+            background: var(--lavender);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            border: 4px solid var(--night);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0 var(--night);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 6rem;
+            color: var(--hot-pink);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--night);
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .stars {
+            color: var(--electric-yellow);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 3rem;
+            background: var(--cream);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info h3 span {
+            color: var(--hot-pink);
+        }
+
+        .contact-info > p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--electric-yellow);
+            border: 3px solid var(--night);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-text p {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .contact-text a {
+            color: var(--hot-pink);
+            text-decoration: none;
+        }
+
+        .contact-form-container {
+            background: white;
+            border: 4px solid var(--night);
+            border-radius: 30px;
+            padding: 2.5rem;
+            box-shadow: 10px 10px 0 var(--hot-pink);
+        }
+
+        .contact-form-container h3 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--night);
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 1rem;
+            border: 3px solid var(--night);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--hot-pink);
+            box-shadow: 0 0 0 3px rgba(255, 46, 99, 0.1);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--hot-pink);
+            color: white;
+            border: 4px solid var(--night);
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 5px 5px 0 var(--night);
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 var(--night);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--night);
+            color: white;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .footer-column h4 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--electric-yellow);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: white;
+            opacity: 0.7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            opacity: 1;
+            color: var(--hot-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--hot-pink);
+            border: 3px solid white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--electric-yellow);
+            color: var(--night);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--hot-pink);
+            border: 4px solid var(--night);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 var(--night);
+            transition: all 0.3s ease;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            background: var(--electric-yellow);
+            color: var(--night);
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-toggle span {
+            width: 30px;
+            height: 4px;
+            background: var(--night);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Animations on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-tagline {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-images {
+                display: none;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .gallery-item:nth-child(1),
+            .gallery-item:nth-child(5) {
+                grid-column: span 1;
+            }
+
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--cream);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: all 0.4s ease;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h1 .line-3 {
+                font-size: 3rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Booking Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(20, 33, 61, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: white;
+            border: 4px solid var(--night);
+            border-radius: 25px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.5rem;
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            background: var(--night);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--hot-pink);
+        }
+
+        .booking-summary {
+            background: var(--cream);
+            border: 3px dashed var(--night);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .booking-summary h4 {
+            color: var(--hot-pink);
+            margin-bottom: 1rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(20, 33, 61, 0.1);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding-top: 1rem;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            background: var(--hot-pink);
+            border-top: 4px solid var(--night);
+            border-bottom: 4px solid var(--night);
+            padding: 1rem 0;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 3rem;
+            padding: 0 1.5rem;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            font-family: 'Dela Gothic One', cursive;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">🌋</div>
+            BOLOBOLO
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#packages">Adventures</a></li>
+            <li><a href="#calendar">Availability</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#calendar" class="nav-cta">Book Now!</a></li>
+        </ul>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                <span class="line-1">Explore East Java</span>
+                <span class="line-2">Like a Local</span>
+                <span class="line-3">with Tania!</span>
+            </h1>
+            <p class="hero-tagline">
+                Volcanic sunrises, hidden waterfalls, spicy street food, ancient temples — experience the raw magic of Surabaya and beyond with your new favorite adventure buddy! 🌺
+            </p>
+            <div class="hero-buttons">
+                <a href="#packages" class="btn-primary">
+                    See Adventures ✨
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    Say Hello! 👋
+                </a>
+            </div>
+        </div>
+        <div class="hero-images">
+            <div class="hero-img hero-img-1">
+                <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=600&h=800&fit=crop" alt="Mount Bromo sunrise">
+            </div>
+            <div class="hero-img hero-img-2">
+                <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=500&h=600&fit=crop" alt="Indonesian street food">
+            </div>
+            <div class="hero-img hero-img-3">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=500&fit=crop" alt="Bali temple">
+            </div>
+            <div class="floating-sticker sticker-1">🔥 Hot adventures!</div>
+            <div class="floating-sticker sticker-2">📸 Insta-worthy!</div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span>⭐ BROMO SUNRISE</span>
+                <span>🌊 IJEN BLUE FIRE</span>
+                <span>🍜 STREET FOOD TOURS</span>
+                <span>🏛️ ANCIENT TEMPLES</span>
+                <span>🌴 HIDDEN WATERFALLS</span>
+                <span>🎒 CUSTOM ADVENTURES</span>
+                <span>⭐ BROMO SUNRISE</span>
+                <span>🌊 IJEN BLUE FIRE</span>
+                <span>🍜 STREET FOOD TOURS</span>
+                <span>🏛️ ANCIENT TEMPLES</span>
+                <span>🌴 HIDDEN WATERFALLS</span>
+                <span>🎒 CUSTOM ADVENTURES</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Happy Adventurers</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Hidden Gems Discovered</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4.9</div>
+            <div class="stat-label">Average Rating ⭐</div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-image fade-in">
+            <div class="about-image-main">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&h=700&fit=crop" alt="Tania - Your tour guide">
+            </div>
+            <div class="about-badge">
+                <span>LOCAL</span>
+                <span>EXPERT</span>
+                <span>🌟</span>
+            </div>
+        </div>
+        <div class="about-content fade-in">
+            <h2>Hey, I'm <span>Tania!</span></h2>
+            <p>
+                Born and raised in Surabaya, I've spent my whole life exploring every corner of East Java — from the misty peaks of Mount Bromo to the secret warungs only locals know about.
+            </p>
+            <p>
+                Tourism isn't just my job, it's my passion! I believe the best travel experiences come from genuine connections and off-the-beaten-path discoveries. No boring bus tours here — just real adventures, real food, and real stories.
+            </p>
+            <p>
+                Whether you want to chase volcanic sunrises, dive into local culture, or create a completely custom adventure, I'm here to make your East Java dreams come true! Let's explore together 🌺
+            </p>
+            <div class="about-highlights">
+                <span class="highlight-tag">🗣️ Fluent English</span>
+                <span class="highlight-tag">📸 Photo Expert</span>
+                <span class="highlight-tag">🍜 Foodie Guide</span>
+                <span class="highlight-tag">🥾 Hiking Pro</span>
+                <span class="highlight-tag">💚 Eco-Friendly</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages" id="packages">
+        <div class="section-title fade-in">
+            <h2>Pick Your Vibe</h2>
+            <p>Every adventure is different because YOU are different. Choose the energy that calls to you!</p>
+        </div>
+
+        <div class="packages-grid">
+            <!-- Adventure Package -->
+            <div class="package-card fade-in">
+                <div class="package-image">
+                    <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=600&h=400&fit=crop" alt="Mount Bromo Adventure">
+                    <span class="package-vibe vibe-adventure">🔥 Adventure</span>
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Volcanic Dawn Chase</h3>
+                    <p class="package-desc">
+                        Epic sunrise at Mount Bromo + mysterious blue flames of Ijen Crater. For thrill-seekers who wake up before the sun!
+                    </p>
+                    <div class="package-itinerary">
+                        <h4>What's Included</h4>
+                        <ul>
+                            <li>4AM pickup from Surabaya</li>
+                            <li>Bromo sunrise viewpoint</li>
+                            <li>Jeep ride across sea of sand</li>
+                            <li>Ijen blue fire trek (optional)</li>
+                            <li>Local breakfast included</li>
+                            <li>All transportation & guide</li>
+                        </ul>
+                    </div>
+                    <div class="package-meta">
+                        <div class="package-price">$85 <span>/person</span></div>
+                        <span class="package-group">Min. 2 people</span>
+                    </div>
+                    <a href="#calendar" class="package-btn">Book This Adventure</a>
+                </div>
+            </div>
+
+            <!-- Historical Package -->
+            <div class="package-card fade-in">
+                <div class="package-image">
+                    <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=600&h=400&fit=crop" alt="Historical Temple">
+                    <span class="package-vibe vibe-history">📜 Historical</span>
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Ancient Kingdom Trail</h3>
+                    <p class="package-desc">
+                        Walk through centuries of Javanese history — from the Majapahit Empire ruins to Dutch colonial heritage sites.
+                    </p>
+                    <div class="package-itinerary">
+                        <h4>What's Included</h4>
+                        <ul>
+                            <li>Trowulan archaeological site</li>
+                            <li>Majapahit Museum visit</li>
+                            <li>Surabaya heritage walk</li>
+                            <li>House of Sampoerna tour</li>
+                            <li>Traditional lunch</li>
+                            <li>Expert historical commentary</li>
+                        </ul>
+                    </div>
+                    <div class="package-meta">
+                        <div class="package-price">$65 <span>/person</span></div>
+                        <span class="package-group">Min. 2 people</span>
+                    </div>
+                    <a href="#calendar" class="package-btn">Book This Adventure</a>
+                </div>
+            </div>
+
+            <!-- Local Experience -->
+            <div class="package-card fade-in">
+                <div class="package-image">
+                    <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=600&h=400&fit=crop" alt="Local Food Experience">
+                    <span class="package-vibe vibe-local">🍜 Local Vibes</span>
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Eat Like a Local</h3>
+                    <p class="package-desc">
+                        The REAL Surabaya food tour! Secret warungs, night markets, and dishes you won't find in any guidebook.
+                    </p>
+                    <div class="package-itinerary">
+                        <h4>What's Included</h4>
+                        <ul>
+                            <li>8+ food stops (get hungry!)</li>
+                            <li>Pasar Genteng market tour</li>
+                            <li>Street food crawl</li>
+                            <li>Cooking demonstration</li>
+                            <li>All food tastings included</li>
+                            <li>Vegetarian options available</li>
+                        </ul>
+                    </div>
+                    <div class="package-meta">
+                        <div class="package-price">$55 <span>/person</span></div>
+                        <span class="package-group">Min. 2 people</span>
+                    </div>
+                    <a href="#calendar" class="package-btn">Book This Adventure</a>
+                </div>
+            </div>
+
+            <!-- Religious/Spiritual -->
+            <div class="package-card fade-in">
+                <div class="package-image">
+                    <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&h=400&fit=crop" alt="Spiritual Temple">
+                    <span class="package-vibe vibe-spiritual">🙏 Spiritual</span>
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Sacred Spaces Journey</h3>
+                    <p class="package-desc">
+                        Experience the spiritual harmony of Java — visit mosques, temples, and churches that have coexisted for centuries.
+                    </p>
+                    <div class="package-itinerary">
+                        <h4>What's Included</h4>
+                        <ul>
+                            <li>Al-Akbar Grand Mosque</li>
+                            <li>Sanggar Agung Temple</li>
+                            <li>Kelenteng Hong Tiek Hian</li>
+                            <li>Meditation session</li>
+                            <li>Interfaith dialogue</li>
+                            <li>Vegetarian lunch</li>
+                        </ul>
+                    </div>
+                    <div class="package-meta">
+                        <div class="package-price">$60 <span>/person</span></div>
+                        <span class="package-group">Min. 2 people</span>
+                    </div>
+                    <a href="#calendar" class="package-btn">Book This Adventure</a>
+                </div>
+            </div>
+
+            <!-- Bespoke -->
+            <div class="package-card fade-in" style="background: linear-gradient(135deg, #fff 0%, #ffe6ec 100%);">
+                <div class="package-image">
+                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=600&h=400&fit=crop" alt="Custom Adventure">
+                    <span class="package-vibe vibe-bespoke">✨ Bespoke</span>
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Design Your Dream Trip</h3>
+                    <p class="package-desc">
+                        Have something specific in mind? Let's create YOUR perfect adventure together — anything is possible!
+                    </p>
+                    <div class="package-itinerary">
+                        <h4>Popular Requests</h4>
+                        <ul>
+                            <li>Multi-day expeditions</li>
+                            <li>Photography-focused tours</li>
+                            <li>Family-friendly adventures</li>
+                            <li>Honeymoon specials</li>
+                            <li>Corporate retreats</li>
+                            <li>Whatever you can dream up!</li>
+                        </ul>
+                    </div>
+                    <div class="package-meta">
+                        <div class="package-price">Custom <span>pricing</span></div>
+                        <span class="package-group">Any group size</span>
+                    </div>
+                    <a href="#contact" class="package-btn" style="background: var(--hot-pink);">Send Your Ideas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="calendar-section" id="calendar">
+        <div class="section-title fade-in">
+            <h2>When Are You Coming?</h2>
+            <p>Check my availability and pick your adventure date. Green = Let's go! 🚀</p>
+        </div>
+
+        <div class="calendar-container fade-in">
+            <div class="calendar-header">
+                <div class="calendar-nav">
+                    <button onclick="prevMonth()">←</button>
+                    <button onclick="nextMonth()">→</button>
+                </div>
+                <div class="calendar-month" id="currentMonth">March 2026</div>
+            </div>
+            <div class="calendar-grid">
+                <div class="calendar-weekdays">
+                    <div class="weekday">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                <div class="calendar-days" id="calendarDays">
+                    <!-- Days will be generated by JavaScript -->
+                </div>
+            </div>
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <div class="legend-dot legend-available"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot legend-unavailable"></div>
+                    <span>Booked</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section" id="payment">
+        <div class="section-title fade-in">
+            <h2>Easy Peasy Booking</h2>
+            <p>Secure your spot with just 20% deposit. Pay the rest when we meet!</p>
+        </div>
+
+        <div class="payment-container">
+            <div class="payment-info fade-in">
+                <h3>How It Works</h3>
+                <div class="payment-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Pick Your Adventure</h4>
+                        <p>Choose a package or tell me your custom idea</p>
+                    </div>
+                </div>
+                <div class="payment-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Select Your Date</h4>
+                        <p>Check availability and choose when to explore</p>
+                    </div>
+                </div>
+                <div class="payment-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Pay 20% Deposit</h4>
+                        <p>Secure your booking with a small deposit</p>
+                    </div>
+                </div>
+                <div class="payment-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Adventure Time!</h4>
+                        <p>Pay the remaining 80% when we meet in person</p>
+                    </div>
+                </div>
+                <div class="payment-highlight">
+                    <p>Non-refundable deposit to secure your spot</p>
+                    <span class="amount">20% of total</span>
+                </div>
+            </div>
+
+            <div class="payment-form fade-in">
+                <h3>💳 Pay Deposit</h3>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Adventurer" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="hello@adventure.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Selected Package</label>
+                        <select required>
+                            <option value="">Choose your adventure...</option>
+                            <option value="volcanic">Volcanic Dawn Chase - $85/person</option>
+                            <option value="historical">Ancient Kingdom Trail - $65/person</option>
+                            <option value="food">Eat Like a Local - $55/person</option>
+                            <option value="spiritual">Sacred Spaces Journey - $60/person</option>
+                            <option value="custom">Bespoke Adventure - Custom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Number of People</label>
+                        <input type="number" min="2" max="20" placeholder="2" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="card-row">
+                        <div class="form-group">
+                            <label>Expiry</label>
+                            <input type="text" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" placeholder="123" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="pay-btn">Pay Deposit Now 🔐</button>
+                    <div class="secure-badge">
+                        🔒 Secured by Stripe • 256-bit SSL encryption
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-title fade-in">
+            <h2>Adventure Snaps</h2>
+            <p>Real moments from real adventures. This could be YOU! 📸</p>
+        </div>
+
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=800&h=500&fit=crop" alt="Bromo sunrise">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&h=300&fit=crop" alt="Blue fire Ijen">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=400&h=300&fit=crop" alt="Street food">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=300&fit=crop" alt="Temple">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=500&fit=crop" alt="Local guide">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?w=400&h=300&fit=crop" alt="Waterfall">
+            </div>
+        </div>
+
+        <div class="gallery-cta">
+            <a href="https://www.instagram.com/boloboloadventure.id/" target="_blank" class="instagram-btn">
+                <span>📸</span> Follow @boloboloadventure.id
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-title fade-in">
+            <h2>Happy Explorers</h2>
+            <p>Don't just take my word for it — hear from fellow adventurers!</p>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card fade-in">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "Tania made our Bromo trip absolutely MAGICAL! She knew the perfect spots for sunrise photos and took us to a breakfast place that changed my life. Best tour guide ever!"
+                </p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Sarah M.</h4>
+                        <p>Australia 🇦🇺</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "The food tour was incredible! I ate things I never would have found on my own. Tania's energy is infectious and her knowledge about local culture is amazing."
+                </p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Marco" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Marco L.</h4>
+                        <p>Italy 🇮🇹</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "We did a custom 3-day trip and it exceeded all expectations. Tania planned everything perfectly and genuinely cared about giving us the best experience possible."
+                </p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Emma" class="author-avatar">
+                    <div class="author-info">
+                        <h4>Emma & James</h4>
+                        <p>UK 🇬🇧</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info fade-in">
+                <h3>Let's <span>Chat!</span></h3>
+                <p>
+                    Got questions? Want to create a custom adventure? Just want to say hi? 
+                    I'd love to hear from you! Drop me a message and I'll get back to you faster than you can say "Bolobolo"! 🌺
+                </p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Based In</h4>
+                            <p>Surabaya, East Java, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-text">
+                            <h4>WhatsApp</h4>
+                            <p><a href="https://wa.me/6281234567890">+62 812 3456 7890</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:hello@boloboloadventure.id">hello@boloboloadventure.id</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📸</div>
+                        <div class="contact-text">
+                            <h4>Instagram</h4>
+                            <p><a href="https://www.instagram.com/boloboloadventure.id/" target="_blank">@boloboloadventure.id</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container fade-in">
+                <h3>Send a Message 💌</h3>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" placeholder="What should I call you?" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Interested In</label>
+                        <select>
+                            <option value="">Select an option...</option>
+                            <option value="adventure">Adventure Tours</option>
+                            <option value="historical">Historical Tours</option>
+                            <option value="food">Food Tours</option>
+                            <option value="spiritual">Spiritual Tours</option>
+                            <option value="custom">Custom / Bespoke Trip</option>
+                            <option value="question">Just Have a Question</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Message *</label>
+                        <textarea placeholder="Tell me about your dream adventure! When are you planning to visit? How many people? Any special requests?" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message 🚀</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">🌋</div>
+                    BOLOBOLO
+                </a>
+                <p>
+                    Your gateway to authentic East Java adventures. Experience Indonesia like a local with personalized tours that go beyond the guidebook!
+                </p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/boloboloadventure.id/" target="_blank" class="social-link">📸</a>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="social-link">💬</a>
+                    <a href="mailto:hello@boloboloadventure.id" class="social-link">✉️</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Adventures</h4>
+                <ul>
+                    <li><a href="#packages">Volcanic Dawn Chase</a></li>
+                    <li><a href="#packages">Ancient Kingdom Trail</a></li>
+                    <li><a href="#packages">Eat Like a Local</a></li>
+                    <li><a href="#packages">Sacred Spaces Journey</a></li>
+                    <li><a href="#contact">Custom Adventures</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Tania</a></li>
+                    <li><a href="#calendar">Availability</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#payment">How to Book</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#">Mount Bromo</a></li>
+                    <li><a href="#">Ijen Crater</a></li>
+                    <li><a href="#">Surabaya City</a></li>
+                    <li><a href="#">Trowulan</a></li>
+                    <li><a href="#">Hidden Waterfalls</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Bolobolo Adventure. Made with 💖 in Surabaya</p>
+            <p>Licensed Tour Guide • Eco-Friendly Tourism</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>🎉 Confirm Booking</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="booking-summary">
+                <h4>Booking Summary</h4>
+                <div class="summary-row">
+                    <span>Selected Date:</span>
+                    <span id="selectedDateDisplay">-</span>
+                </div>
+                <div class="summary-row">
+                    <span>Status:</span>
+                    <span style="color: var(--mint); font-weight: 600;">Available ✓</span>
+                </div>
+            </div>
+            <p style="text-align: center; margin-bottom: 1.5rem;">
+                Great choice! Now select a package and complete your booking below. 👇
+            </p>
+            <a href="#payment" class="btn-primary" style="display: block; text-align: center;" onclick="closeModal()">
+                Continue to Payment
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Scroll to top
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fade in animations on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Calendar functionality
+        let currentDate = new Date();
+        let selectedDate = null;
+
+        // Sample unavailable dates (booked)
+        const unavailableDates = [
+            '2026-03-15', '2026-03-16', '2026-03-20', '2026-03-21', '2026-03-22',
+            '2026-04-05', '2026-04-06', '2026-04-10', '2026-04-11',
+            '2026-05-01', '2026-05-02', '2026-05-15'
+        ];
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                               'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+            
+            let html = '';
+            
+            // Empty cells for days before the first day of the month
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div class="calendar-day empty"></div>';
+            }
+            
+            // Days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const dateObj = new Date(year, month, day);
+                const isPast = dateObj < today && dateObj.toDateString() !== today.toDateString();
+                const isUnavailable = unavailableDates.includes(dateStr) || isPast;
+                const isSelected = selectedDate === dateStr;
+                
+                let className = 'calendar-day';
+                if (isUnavailable) className += ' unavailable';
+                else className += ' available';
+                if (isSelected) className += ' selected';
+                
+                html += `<div class="${className}" onclick="selectDate('${dateStr}', ${isUnavailable})">${day}</div>`;
+            }
+            
+            document.getElementById('calendarDays').innerHTML = html;
+        }
+
+        function prevMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        }
+
+        function selectDate(dateStr, isUnavailable) {
+            if (isUnavailable) return;
+            
+            selectedDate = dateStr;
+            renderCalendar();
+            
+            // Show booking modal
+            const dateObj = new Date(dateStr);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('selectedDateDisplay').textContent = dateObj.toLocaleDateString('en-US', options);
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('bookingModal').addEventListener('click', (e) => {
+            if (e.target.id === 'bookingModal') closeModal();
+        });
+
+        // Initialize calendar
+        renderCalendar();
+
+        // Form submissions (demo)
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for your message! Tania will get back to you within 24 hours 🌺');
+            e.target.reset();
+        });
+
+        document.getElementById('paymentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Demo mode: In production, this would process your payment securely via Stripe! 🔐');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
